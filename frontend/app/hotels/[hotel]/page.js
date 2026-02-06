@@ -16,6 +16,7 @@ import {
   Check,
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import { differenceInCalendarDays } from "date-fns";
 
 export default function HotelDetail() {
   const { hotel } = useParams();
@@ -38,6 +39,26 @@ export default function HotelDetail() {
   const [isFirstLoad, setIsFirstLoad] = useState(true);
 
   const { user } = useContext(UserContext);
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const urlParams = new URLSearchParams(window.location.search);
+      const checkinParam = urlParams.get('checkin');
+      const checkoutParam = urlParams.get('checkout');
+      const guestsParam = urlParams.get('guests');
+
+      if (checkinParam && checkoutParam) {
+        setRange({
+          from: new Date(checkinParam),
+          to: new Date(checkoutParam),
+        });
+      }
+      
+      if (guestsParam) {
+        setGuests(parseInt(guestsParam, 10));
+      }
+    }
+  }, []);
 
   useEffect(() => {
     fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/listings/${hotel}`)
@@ -207,7 +228,7 @@ export default function HotelDetail() {
     range.to && range.to.toLocaleDateString("en-IN", { dateStyle: "medium" });
   const nights =
     range.from && range.to
-      ? (range.to.getTime() - range.from.getTime()) / (1000 * 60 * 60 * 24)
+      ? differenceInCalendarDays(range.to, range.from)
       : 0;
 
   const averageRating =

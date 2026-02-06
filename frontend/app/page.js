@@ -9,6 +9,9 @@ import { useRouter } from "next/navigation";
 
 export default function Home() {
   const [searchQuery, setSearchQuery] = useState("");
+  const [checkin, setCheckin] = useState("");
+  const [checkout, setCheckout] = useState("");
+  const [guests, setGuests] = useState("1");
   const [popularDestinations, setPopularDestinations] = useState([
     { id: 1, name: "Bali", image: "/bali.jpg", properties: 245 },
     { id: 2, name: "Dubai", image: "/dubai.webp", properties: 312 },
@@ -20,7 +23,13 @@ export default function Home() {
   const handleSearch = (e) => {
     e.preventDefault();
     if (searchQuery.trim()) {
-      router.push(`/hotels?q=${encodeURIComponent(searchQuery)}`);
+      const params = new URLSearchParams();
+      params.set("q", searchQuery);
+      if (checkin) params.set("checkin", checkin);
+      if (checkout) params.set("checkout", checkout);
+      if (guests) params.set("guests", guests);
+      
+      router.push(`/hotels?${params.toString()}`);
     }
   };
 
@@ -95,6 +104,8 @@ export default function Home() {
                   id="checkin"
                   name="checkin"
                   type="date"
+                  value={checkin}
+                  onChange={(e) => setCheckin(e.target.value)}
                   className="w-full px-3 py-3 text-sm sm:text-base rounded-lg bg-white/5 text-white focus:outline-none focus:ring-2 focus:ring-blue-400 transition border border-white/15 placeholder-transparent scheme-dark"
                 />
                 
@@ -108,6 +119,8 @@ export default function Home() {
                   id="checkout"
                   name="checkout"
                   type="date"
+                  value={checkout}
+                  onChange={(e) => setCheckout(e.target.value)}
                   className="w-full px-3 py-3 text-sm sm:text-base rounded-lg bg-white/5 text-white focus:outline-none focus:ring-2 focus:ring-blue-400 transition border border-white/15 placeholder-transparent scheme-dark"
                 />
               </div>
@@ -120,6 +133,8 @@ export default function Home() {
                 <select
                   id="guests"
                   name="guests"
+                  value={guests}
+                  onChange={(e) => setGuests(e.target.value)}
                   className="w-full appearance-none pl-4 py-3 text-sm sm:text-base rounded-lg bg-white/10 text-white cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-400 transition border border-white/15"
                 >
                   <option value="1" className="text-black bg-white">
@@ -169,7 +184,7 @@ export default function Home() {
         >
           <div className="flex justify-between items-center mb-6">
             <h2 className="text-2xl font-bold">Popular Destinations</h2>
-            <Link href="/hotels" className="text-blue-400 hover:text-blue-300 flex items-center gap-1 transition-colors">
+            <Link href="/hotels" className="hover:text-blue-300 flex items-center gap-1 transition-colors">
               View all <ArrowRight className="w-4 h-4" />
             </Link>
           </div>

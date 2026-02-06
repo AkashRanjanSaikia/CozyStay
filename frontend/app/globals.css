@@ -243,5 +243,17 @@
     -ms-overflow-style: none;  /* IE and Edge */
     scrollbar-width: none;     /* Firefox */
   }
+
+  /* Fix for chrome autofill background removed from here to move to global scope */
+}
+
+/* Global fix for Chrome autofill background */
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active {
+    -webkit-text-fill-color: #ffffff !important;
+    caret-color: white !important;
+    transition: background-color 5000s ease-in-out 0s;
 }
 

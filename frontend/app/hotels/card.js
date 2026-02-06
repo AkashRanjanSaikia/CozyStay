@@ -15,6 +15,7 @@ export default function Card({
   image,
   isFavorite: initialFavorite = false,
   rating,
+  searchParams,
 }) {
   const router = useRouter();
   const { user } = useContext(UserContext);
@@ -26,7 +27,13 @@ export default function Card({
   }, [initialFavorite]);
 
   const handleNavigate = () => {
-    router.push(`/hotels/${id}`);
+    const params = new URLSearchParams();
+    if (searchParams?.checkin) params.set("checkin", searchParams.checkin);
+    if (searchParams?.checkout) params.set("checkout", searchParams.checkout);
+    if (searchParams?.guests) params.set("guests", searchParams.guests);
+    
+    const queryString = params.toString();
+    router.push(`/hotels/${id}${queryString ? `?${queryString}` : ""}`);
   };
 
   const handleKey = (e) => {

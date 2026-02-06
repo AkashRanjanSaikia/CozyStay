@@ -157,11 +157,9 @@ export default function Login() {
             </button>
           </form>
 
-          {/* <div className="mt-4 text-center text-sm text-white/80">
-            Or continue with
-          </div>
+          {/* <h2>Or</h2>
 
-          <div className="mt-3 grid grid-cols-2 gap-3">
+          <div className="mt-3 ">
             <button
               className="w-full inline-flex items-center justify-center gap-2 rounded-lg px-3 py-2 bg-white/8 hover:bg-white/12 border border-white/6 text-white"
               aria-label="Continue with Google"
@@ -177,22 +175,7 @@ export default function Login() {
                   fill="currentColor"
                 />
               </svg>
-              <span className="text-sm">Google</span>
-            </button>
-
-            <button
-              className="w-full inline-flex items-center justify-center gap-2 rounded-lg px-3 py-2 bg-white/8 hover:bg-white/12 border border-white/6 text-white"
-              aria-label="Continue with GitHub"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-4 w-4"
-                viewBox="0 0 24 24"
-                fill="currentColor"
-              >
-                <path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.38 7.86 10.9.58.1.79-.25.79-.56 0-.28-.01-1.02-.02-2-3.2.7-3.88-1.54-3.88-1.54-.53-1.36-1.3-1.72-1.3-1.72-1.06-.72.08-.7.08-.7 1.17.08 1.78 1.2 1.78 1.2 1.04 1.78 2.73 1.26 3.4.97.11-.76.41-1.26.75-1.55-2.55-.29-5.23-1.28-5.23-5.7 0-1.26.45-2.29 1.2-3.1-.12-.29-.52-1.46.11-3.04 0 0 .98-.31 3.2 1.18a11.1 11.1 0 012.92-.4c.99.01 1.98.13 2.92.4 2.22-1.49 3.2-1.18 3.2-1.18.63 1.58.23 2.75.12 3.04.75.81 1.2 1.84 1.2 3.1 0 4.43-2.69 5.40-5.25 5.69.42.37.8 1.1.8 2.22 0 1.6-.01 2.88-.01 3.27 0 .31.21.66.8.55C20.71 21.38 24 17.08 24 12c0-6.35-5.15-11.5-12-11.5z" />
-              </svg>
-              <span className="text-sm">GitHub</span>
+              <span className="text-sm">Continue with Google</span>
             </button>
           </div> */}
 

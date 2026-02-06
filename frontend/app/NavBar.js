@@ -42,8 +42,8 @@ export default function Navbar() {
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
-            initial={{ y: -100, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
             transition={{ duration: 0.5 }}
             className={`
               relative flex items-center justify-between 
@@ -85,14 +85,17 @@ export default function Navbar() {
                     {isActive && (
                       <motion.div
                         layoutId="activeTab"
-                        initial={{ y: -100, opacity: 0 }}
-                        animate={{ y: 0, opacity: 1 }}
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}  
                         className="absolute inset-0 bg-white shadow-sm rounded-full"
                         style={{ zIndex: -1 }}
                         transition={{
-                          type: "spring",
-                          bounce: 0.2,
-                          duration: 0.6,
+                          layout: {
+                            type: "spring",
+                            stiffness: 260,
+                            damping: 25,
+                          },
+                          opacity: { duration: 1 },
                         }}
                       />
                     )}

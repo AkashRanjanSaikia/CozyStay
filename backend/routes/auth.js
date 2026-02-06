@@ -40,7 +40,14 @@ router.post("/login", async (req, res) => {
     { expiresIn: "1d" }
   );
 
-  res.cookie("token", token, { httpOnly: true, maxAge: 24 * 60 * 60 * 1000 });
+  const cookieOptions = {
+    httpOnly: true,
+    maxAge: 24 * 60 * 60 * 1000,
+    secure: process.env.NODE_ENV === "production",
+    sameSite: process.env.NODE_ENV === "production" ? "None" : "Lax",
+  };
+
+  res.cookie("token", token, cookieOptions);
   res.json({
     message: "Logged in successfully",
     user: { id: user._id, name: user.name, role: user.role, email: user.email },
@@ -49,7 +56,11 @@ router.post("/login", async (req, res) => {
 
 // Logout
 router.post("/logout", (req, res) => {
-  res.clearCookie("token");
+  res.clearCookie("token", {
+    httpOnly: true,
+    secure: process.env.NODE_ENV === "production",
+    sameSite: process.env.NODE_ENV === "production" ? "None" : "Lax",
+  });
   res.json({ message: "Logged out" });
 });
 
@@ -90,7 +101,12 @@ router.post("/register", async (req, res) => {
       { expiresIn: "1d" }
     );
 
-    res.cookie("token", token, { httpOnly: true, maxAge: 24 * 60 * 60 * 1000 });
+    res.cookie("token", token, {
+      httpOnly: true,
+      maxAge: 24 * 60 * 60 * 1000,
+      secure: process.env.NODE_ENV === "production",
+      sameSite: process.env.NODE_ENV === "production" ? "None" : "Lax",
+    });
 
     res.status(200).json({
       message: "Manager registration successful. Await approval.",

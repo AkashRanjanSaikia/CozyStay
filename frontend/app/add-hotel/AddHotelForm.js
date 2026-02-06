@@ -435,7 +435,7 @@ export default function AddHotelForm() {
             className={`w-full py-3.5 rounded-lg text-white font-semibold shadow-md transition duration-200 mt-6 ${
               loading || !isFormValid()
                 ? "bg-slate-400 cursor-not-allowed"
-                : "bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 hover:shadow-lg transform hover:-translate-y-0.5"
+                : "bg-linear-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 hover:shadow-lg transform hover:-translate-y-0.5"
             }`}
           >
             {loading ? (

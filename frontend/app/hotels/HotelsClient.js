@@ -59,6 +59,11 @@ export default function HotelsClient({ listings = [] }) {
   const [showFilters, setShowFilters] = useState(false);
   const [activeFilters, setActiveFilters] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
+  const [searchParams, setSearchParams] = useState({
+    checkin: "",
+    checkout: "",
+    guests: "1"
+  });
   const [isFavorite, setIsFavorite] = useState([]);
   const { user } = useContext(UserContext);
   
@@ -67,10 +72,19 @@ export default function HotelsClient({ listings = [] }) {
     if (typeof window !== 'undefined') {
         const urlParams = new URLSearchParams(window.location.search);
         const queryParam = urlParams.get('q');
+        const checkinParam = urlParams.get('checkin');
+        const checkoutParam = urlParams.get('checkout');
+        const guestsParam = urlParams.get('guests');
         
         if (queryParam) {
           setSearchQuery(queryParam);
         }
+
+        setSearchParams({
+          checkin: checkinParam || "",
+          checkout: checkoutParam || "",
+          guests: guestsParam || "1"
+        });
     }
   }, []);
   
@@ -229,6 +243,7 @@ export default function HotelsClient({ listings = [] }) {
                       image={hotel.mainImage?.url}
                       isFavorite={isFavorite.includes(hotel._id)}
                       rating={getAverageRating(hotel.reviews)}
+                      searchParams={searchParams}
                     />
                   </motion.div>
                 ))}
