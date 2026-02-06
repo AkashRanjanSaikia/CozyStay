@@ -278,7 +278,7 @@ export default function HotelDetail() {
 
   return (
     <main className="relative">
-      <div className="relative w-full h-[500px] sm:h-[600px] lg:h-[500px] rounded-xl overflow-hidden shadow-xl">
+      <div className="relative w-full h-[350px] sm:h-[500px] lg:h-[500px]  overflow-hidden shadow-xl">
         {/* Hotel Background Image with Directional Sliding Effect */}
         <AnimatePresence mode="sync">
           <motion.div 
@@ -308,13 +308,13 @@ export default function HotelDetail() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="absolute bottom-0 left-0 w-full p-8 sm:p-12 lg:p-16"
+          className="absolute bottom-0 left-0 w-full p-5 sm:p-12 lg:p-16"
         >
-          <div className="inline-block px-3 py-1 mb-4 bg-blue-600/90 text-white text-sm rounded-full">
+          <div className="inline-block px-3 py-1 mb-3 sm:mb-4 bg-blue-600/90 text-white text-xs sm:text-sm rounded-full">
             Premium Stay
           </div>
 
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white drop-shadow-lg">
+          <h1 className="text-2xl sm:text-4xl lg:text-5xl font-bold text-white drop-shadow-lg">
             {hotelData.title}
           </h1>
 
@@ -438,7 +438,7 @@ export default function HotelDetail() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.2 }}
-          className="lg:col-span-2 bg-white dark:bg-gray-900 p-8 sm:p-10 rounded-2xl shadow-xl border border-gray-100"
+          className="lg:col-span-2 bg-white dark:bg-gray-900 p-5 sm:p-10 rounded-2xl shadow-xl border border-gray-100"
         >
           <div className="flex flex-col gap-8">
             <div>
@@ -456,35 +456,35 @@ export default function HotelDetail() {
               <h3 className="text-xl font-semibold mb-4 text-gray-800 dark:text-white">
                 Property highlights
               </h3>
-              <div className="grid grid-cols-2 sm:grid-cols-3 gap-6 mt-2">
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 sm:gap-6 mt-2">
                 {[
                   {
-                    icon: <Wifi className="w-5 h-5" />,
+                    icon: <Wifi className="w-4 h-4 sm:w-5 sm:h-5" />,
                     name: "Free high-speed WiFi",
                   },
                   {
-                    icon: <Coffee className="w-5 h-5" />,
+                    icon: <Coffee className="w-4 h-4 sm:w-5 sm:h-5" />,
                     name: "Breakfast included",
                   },
                   {
-                    icon: <Waves className="w-5 h-5" />,
+                    icon: <Waves className="w-4 h-4 sm:w-5 sm:h-5" />,
                     name: "Swimming pool",
                   },
                   {
-                    icon: <Check className="w-5 h-5" />,
+                    icon: <Check className="w-4 h-4 sm:w-5 sm:h-5" />,
                     name: "Air conditioning",
                   },
-                  { icon: <Check className="w-5 h-5" />, name: "Room service" },
-                  { icon: <Check className="w-5 h-5" />, name: "Free parking" },
+                  { icon: <Check className="w-4 h-4 sm:w-5 sm:h-5" />, name: "Room service" },
+                  { icon: <Check className="w-4 h-4 sm:w-5 sm:h-5" />, name: "Free parking" },
                 ].map((amenity, idx) => (
                   <div
                     key={idx}
-                    className="flex items-center gap-3 p-3 rounded-xl bg-blue-50/50 dark:bg-white/5 border border-blue-100/50 dark:border-white/10"
+                    className="flex items-center gap-2 sm:gap-3 p-2 sm:p-3 rounded-xl bg-blue-50/50 dark:bg-white/5 border border-blue-100/50 dark:border-white/10"
                   >
-                    <div className="h-10 w-10 rounded-full bg-blue-100 dark:bg-white/10 flex items-center justify-center text-blue-600 dark:text-blue-400">
+                    <div className="h-8 w-8 sm:h-10 sm:w-10 rounded-full bg-blue-100 dark:bg-white/10 flex items-center justify-center text-blue-600 dark:text-blue-400">
                       {amenity.icon}
                     </div>
-                    <span className="text-gray-700 dark:text-gray-300 font-medium">
+                    <span className="text-gray-700 dark:text-gray-300 font-medium text-xs sm:text-base">
                       {amenity.name}
                     </span>
                   </div>
@@ -493,7 +493,7 @@ export default function HotelDetail() {
             </div>
 
             {/* Beautiful Gallery Grid */}
-            <div className="mt-8 grid grid-cols-3 sm:grid-cols-4 gap-4">
+            <div className="mt-8 grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4">
               {/* First image – larger */}
               <motion.div
                 key={0}
@@ -560,7 +560,7 @@ export default function HotelDetail() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.4 }}
-          className="bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-2xl flex flex-col lg:sticky lg:top-24 border border-gray-100 dark:border-gray-700"
+          className="bg-white dark:bg-gray-800 p-6 sm:p-8 rounded-2xl shadow-2xl flex flex-col lg:sticky lg:top-24 border border-gray-100 dark:border-gray-700"
         >
           <div className="flex items-center justify-between">
             <div>
