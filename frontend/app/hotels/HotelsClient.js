@@ -1,7 +1,7 @@
 "use client";
 
 import Card from "./card";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { Search, Filter, MapPin, X } from "lucide-react";
 import { useState, useEffect, useContext } from "react";
 import { UserContext } from "../context/usercontext";
@@ -18,39 +18,34 @@ function FilterOptions({ onFilterChange, activeFilters, onClearFilters }) {
   ];
 
   return (
-    <motion.div
-      initial={{ opacity: 0, height: 0 }}
-      animate={{ opacity: 1, height: "auto" }}
-      exit={{ opacity: 0, height: 0 }}
-      className="mb-6 bg-white p-4 rounded-lg shadow-md"
-    >
-      <div className="flex justify-between items-center mb-3">
-        <h3 className="font-semibold text-gray-700">Filter By:</h3>
+    <div className="mb-6 bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
+      <div className="flex justify-between items-center mb-4">
+        <h3 className="font-semibold text-gray-900">Filter By:</h3>
         {activeFilters.length > 0 && (
           <button
             onClick={onClearFilters}
-            className="text-sm text-blue-600 flex items-center gap-1 hover:text-blue-800 transition-colors"
+            className="text-sm text-blue-600 flex items-center gap-1.5 hover:text-blue-700 transition-colors font-medium"
           >
-            <X className="w-3 h-3" /> Clear all
+            <X className="w-3.5 h-3.5" /> Clear all
           </button>
         )}
       </div>
-      <div className="flex flex-wrap gap-2">
+      <div className="flex flex-wrap gap-2.5">
         {filters.map((filter) => (
           <button
             key={filter.id}
             onClick={() => onFilterChange(filter.id)}
-            className={`px-3 py-1 text-sm rounded-full transition-colors ${
+            className={`px-4 py-2 text-sm rounded-full transition-all duration-200 border ${
               activeFilters.includes(filter.id)
-                ? "bg-blue-500 text-white"
-                : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+                ? "bg-gray-900 text-white border-gray-900 shadow-sm"
+                : "bg-white text-gray-600 border-gray-200 hover:border-gray-300 hover:bg-gray-50"
             }`}
           >
             {filter.label}
           </button>
         ))}
       </div>
-    </motion.div>
+    </div>
   );
 }
 
@@ -124,41 +119,27 @@ export default function HotelsClient({ listings = [] }) {
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
-        className="mb-12"
+        className="pt-8 sm:pt-4 mb-12"
       >
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 sm:gap-6 mb-6 sm:mb-8">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 mb-8">
           <div>
             <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 tracking-tight">
               Discover Hotels
             </h1>
-            <p className="mt-2 text-md text-gray-600 max-w-2xl">
+            <p className="mt-3 text-base text-gray-600 max-w-2xl leading-relaxed">
               Browse our curated collection of premium stays — experience
               comfort, luxury, and unforgettable moments.
             </p>
           </div>
 
-          <div className="flex items-center gap-2 px-4 py-2 bg-white rounded-full shadow-sm text-sm text-gray-700 font-medium">
+          <div className="flex items-center gap-2 px-4 py-2 bg-white rounded-full shadow-sm text-sm text-gray-700 font-medium w-fit border border-gray-100">
             <span>{listings.length}</span>
             <span>{listings.length === 1 ? "property" : "properties"}</span>
             <span>available</span>
           </div>
         </div>
 
-        {showFilters && (
-          <FilterOptions
-            onFilterChange={(filterId) => {
-              setActiveFilters((prev) =>
-                prev.includes(filterId)
-                  ? prev.filter((id) => id !== filterId)
-                  : [...prev, filterId]
-              );
-            }}
-            activeFilters={activeFilters}
-            onClearFilters={() => setActiveFilters([])}
-          />
-        )}
-
-        <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 items-stretch sm:items-center justify-between">
+        <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 items-stretch sm:items-center justify-between mb-6">
           <div className="relative w-full sm:w-96">
             <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
               <Search className="h-5 w-5 text-gray-400" />
@@ -166,7 +147,7 @@ export default function HotelsClient({ listings = [] }) {
             <input
               type="text"
               placeholder="Search by location, hotel name..."
-              className="pl-10 pr-4 py-3 w-full rounded-xl border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all outline-none"
+              className="pl-10 pr-4 py-3 w-full rounded-xl border border-gray-200 bg-gray-50 focus:bg-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all outline-none shadow-sm"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
             />
@@ -174,21 +155,45 @@ export default function HotelsClient({ listings = [] }) {
 
           <button
             onClick={() => setShowFilters(!showFilters)}
-            className={`flex items-center gap-2 px-4 py-3 rounded-xl border transition-colors ${
+            className={`flex items-center justify-center gap-2 px-6 py-3 rounded-xl border font-medium transition-all shadow-sm ${
               showFilters
-                ? "bg-blue-500 text-white border-blue-500"
-                : "bg-white text-gray-700 border-gray-300 hover:bg-gray-50"
+                ? "bg-gray-900 text-white border-gray-900 ring-2 ring-gray-900 ring-offset-2"
+                : "bg-white text-gray-700 border-gray-200 hover:bg-gray-50 hover:border-gray-300"
             }`}
           >
-            <Filter className={`h-5 w-5 ${showFilters ? "text-white" : ""}`} />
-            <span>{showFilters ? "Hide filters" : "Filters"}</span>
+            <Filter className="h-5 w-5" />
+            <span>{showFilters ? "Hide Filters" : "Filters"}</span>
             {activeFilters.length > 0 && (
-              <span className="ml-1 bg-blue-600 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
+              <span className="ml-1.5 bg-blue-600 text-white text-xs rounded-full min-w-5 h-5 flex items-center justify-center px-1">
                 {activeFilters.length}
               </span>
             )}
           </button>
         </div>
+
+        <AnimatePresence>
+          {showFilters && (
+            <motion.div
+              initial={{ height: 0, opacity: 0 }}
+              animate={{ height: "auto", opacity: 1 }}
+              exit={{ height: 0, opacity: 0 }}
+              transition={{ duration: 0.3, ease: "easeInOut" }}
+              className="overflow-hidden"
+            >
+              <FilterOptions
+                onFilterChange={(filterId) => {
+                  setActiveFilters((prev) =>
+                    prev.includes(filterId)
+                      ? prev.filter((id) => id !== filterId)
+                      : [...prev, filterId]
+                  );
+                }}
+                activeFilters={activeFilters}
+                onClearFilters={() => setActiveFilters([])}
+              />
+            </motion.div>
+          )}
+        </AnimatePresence>
       </motion.header>
 
       <motion.main

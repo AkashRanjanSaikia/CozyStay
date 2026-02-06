@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { useState } from "react";
-import { Search, MapPin, ArrowRight } from "lucide-react";
+import { Search, MapPin, ArrowRight, Calendar, Users } from "lucide-react";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -43,15 +43,15 @@ export default function Home() {
       <div className="bg-landing" aria-hidden="true" />
 
       {/* Gradient overlay for contrast */}
-      <div className="fixed inset-0 bg-linear-to-b from-black/70 via-black/50 to-black/70" />
+      <div className="fixed inset-0 bg-linear-to-b from-black/70 via-black/50 to-black/70  " />
       
       {/* Content */}
-      <div className="relative z-20 flex flex-col items-center justify-center text-center text-white px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20 mt-8 sm:mt-10">
+      <div className="relative z-20 flex flex-col items-center justify-center text-center text-white px-4 sm:px-6 lg:px-8 py-17 sm:py-16 lg:py-20 mt-8 sm:mt-10">
         <motion.h1 
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="text-3xl md:text-4xl lg:text-6xl font-extrabold leading-tight sm:leading-tight lg:leading-tight mb-3 sm:mb-4 drop-shadow-lg max-w-4xl"
+          className="text-5xl md:text-4xl lg:text-6xl font-extrabold leading-tight sm:leading-tight lg:leading-tight mb-4 sm:mb-4 drop-shadow-lg max-w-4xl"
         >
           Find your perfect stay
         </motion.h1>
@@ -60,7 +60,7 @@ export default function Home() {
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="text-sm sm:text-base lg:text-lg mb-8 sm:mb-12 max-w-xl sm:max-w-2xl lg:max-w-3xl opacity-90"
+          className="text-lg sm:text-base lg:text-lg mb-12 sm:mb-12 max-w-xl sm:max-w-2xl lg:max-w-3xl opacity-90"
         >
           Discover top-rated hotels, compare prices, and book instantly —
           wherever your next adventure takes you.
@@ -100,13 +100,19 @@ export default function Home() {
                 <label htmlFor="checkin" className="sr-only">
                   Check-in
                 </label>
+                <div className="absolute left-3 sm:left-2 top-1/2 transform -translate-y-1/2 text-white/70 pointer-events-none">
+                  <Calendar className="w-4 h-4" />
+                </div>
                 <input
                   id="checkin"
                   name="checkin"
-                  type="date"
+                  type="text"
+                  placeholder="Check-in"
+                  onFocus={(e) => (e.target.type = "date")}
+                  onBlur={(e) => (e.target.type = e.target.value ? "date" : "text")}
                   value={checkin}
                   onChange={(e) => setCheckin(e.target.value)}
-                  className="w-full px-3 py-3 text-sm sm:text-base rounded-lg bg-white/5 text-white focus:outline-none focus:ring-2 focus:ring-blue-400 transition border border-white/15 placeholder-transparent scheme-dark"
+                  className="w-full pl-10  sm:pl-8 py-3 text-sm sm:text-base rounded-lg bg-white/10 text-white focus:outline-none focus:ring-2 focus:ring-blue-400 transition border border-white/15 placeholder-white/70 scheme-dark"
                 />
                 
               </div>
@@ -115,27 +121,35 @@ export default function Home() {
                 <label htmlFor="checkout" className="sr-only">
                   Check-out
                 </label>
+                <div className="absolute left-3 sm:left-1 top-1/2 transform -translate-y-1/2 text-white/70 pointer-events-none">
+                  <Calendar className="w-4 h-4" />
+                </div>
                 <input
                   id="checkout"
                   name="checkout"
-                  type="date"
+                  type="text"
+                  placeholder="Check-out"
+                  onFocus={(e) => (e.target.type = "date")}
+                  onBlur={(e) => (e.target.type = e.target.value ? "date" : "text")}
                   value={checkout}
                   onChange={(e) => setCheckout(e.target.value)}
-                  className="w-full px-3 py-3 text-sm sm:text-base rounded-lg bg-white/5 text-white focus:outline-none focus:ring-2 focus:ring-blue-400 transition border border-white/15 placeholder-transparent scheme-dark"
+                  className="w-full pl-10 sm:pl-6 py-3 text-sm sm:text-base rounded-lg bg-white/10 text-white focus:outline-none focus:ring-2 focus:ring-blue-400 transition border border-white/15 placeholder-white/70 scheme-dark"
                 />
               </div>
 
-              <div className="relative">
+              <div className="relative col-span-2 sm:col-span-1">
                 <label htmlFor="guests" className="sr-only">
                   Guests
                 </label>
-                
+                <div className="absolute left-3 top-1/2 transform -translate-y-1/2 text-white/70 pointer-events-none">
+                  <Users className="w-4 h-4" />
+                </div>
                 <select
                   id="guests"
                   name="guests"
                   value={guests}
                   onChange={(e) => setGuests(e.target.value)}
-                  className="w-full appearance-none pl-4 py-3 text-sm sm:text-base rounded-lg bg-white/10 text-white cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-400 transition border border-white/15"
+                  className="w-full appearance-none pl-10 sm:pl-8 pr-4 py-3 text-sm sm:text-base rounded-lg bg-white/10 text-white cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-400 transition border border-white/15"
                 >
                   <option value="1" className="text-black bg-white">
                     1 guest
@@ -156,7 +170,7 @@ export default function Home() {
                     6+ guests
                   </option>
                 </select>
-                <div className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-white/70">   
+                <div className=" sm:hidden absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-white/70">   
                   <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
                   </svg>
