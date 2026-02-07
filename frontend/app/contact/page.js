@@ -52,7 +52,7 @@ export default function ContactPage() {
         <div className="container relative mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="inline-flex items-center rounded-full border px-3 py-1 text-sm font-medium bg-blue-50 text-blue-700 mb-6">
             <MessageSquare className="mr-2 h-4 w-4" />
-            We're here to help
+            We&apos;re here to help
           </div>
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-gray-900 mb-6">
             Contact <span className="text-blue-600">Us</span>
@@ -92,7 +92,7 @@ export default function ContactPage() {
                   <h3 className="font-semibold text-gray-900 mb-1">Email Us</h3>
                   <p className="text-gray-600 mb-2">contact@wonderlust.com</p>
                   <p className="text-sm text-gray-500">
-                    We'll respond within 24 hours
+                    We&apos;ll respond within 24 hours
                   </p>
                 </div>
               </div>
@@ -144,7 +144,7 @@ export default function ContactPage() {
                 </div>
                 <div>
                   <h2 className="text-2xl font-bold text-gray-900">Send us a Message</h2>
-                  <p className="text-gray-600">Fill out the form below and we'll get back to you shortly.</p>
+                  <p className="text-gray-600">Fill out the form below and we&apos;ll get back to you shortly.</p>
                 </div>
               </div>
 

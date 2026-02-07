@@ -53,8 +53,8 @@ export default function AboutPage() {
                 </p>
                 <p className="text-lg text-gray-600 leading-relaxed">
                   We are building a community where trust, comfort, and adventure 
-                  go hand in hand. Whether you're looking for a quiet cabin in the 
-                  woods or a vibrant city apartment, we're here to help you find 
+                  go hand in hand. Whether you&apos;re looking for a quiet cabin in the 
+                  woods or a vibrant city apartment, we&apos;re here to help you find 
                   your perfect home away from home.
                 </p>
               </div>
@@ -102,7 +102,7 @@ export default function AboutPage() {
               What Sets Us Apart
             </h2>
             <p className="text-lg text-gray-600">
-              We don't just list properties; we curate experiences. Here's why 
+              We don&apos;t just list properties; we curate experiences. Here&apos;s why 
               travelers choose CozyStay for their adventures.
             </p>
           </div>
@@ -196,7 +196,7 @@ export default function AboutPage() {
               Get in Touch
             </h2>
             <p className="text-lg text-gray-600 mb-8">
-              Have questions, feedback, or just want to say hello? We'd love to 
+              Have questions, feedback, or just want to say hello? We&apos;d love to 
               hear from you. Our team is ready to help make your next trip perfect.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
