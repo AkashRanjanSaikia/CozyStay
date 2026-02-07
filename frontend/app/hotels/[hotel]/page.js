@@ -97,7 +97,7 @@ export default function HotelDetail() {
     }
   }, [galleryImages, isFirstLoad]);
 
-  // Auto-rotate images every 3 seconds, with pause functionality
+  // Auto-rotate images every 4 seconds, with pause functionality
   useEffect(() => {
     if (galleryImages.length <= 1 || pauseAutoRotation) return;
     
@@ -108,7 +108,7 @@ export default function HotelDetail() {
         setMainImage(galleryImages[nextIndex]);
         return nextIndex;
       });
-    }, 3000);
+    }, 4000);
     
     return () => clearInterval(interval);
   }, [galleryImages, pauseAutoRotation]);
@@ -278,7 +278,7 @@ export default function HotelDetail() {
 
   return (
     <main className="relative">
-      <div className="relative w-full h-[350px] sm:h-[500px] lg:h-[500px]  overflow-hidden shadow-xl">
+      <div className="relative w-full h-[350px] sm:h-[500px] lg:h-[500px]  overflow-hidden shadow-xl bg-black">
         {/* Hotel Background Image with Directional Sliding Effect */}
         <AnimatePresence mode="sync">
           <motion.div 
@@ -287,7 +287,7 @@ export default function HotelDetail() {
             initial={isFirstLoad ? false : { x: slideDirection === "right" ? "100%" : "-100%" }}
             animate={{ x: 0 }}
             exit={{ x: slideDirection === "right" ? "-100%" : "100%" }}
-            transition={{ duration: 0.8, ease: "easeInOut" }}
+            transition={{ duration: 1.5, ease: "easeInOut" }}
           >
             <Image
               src={mainImage || "/placeholder.jpg"}
