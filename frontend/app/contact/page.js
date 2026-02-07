@@ -48,7 +48,7 @@ export default function ContactPage() {
     <div className="min-h-screen bg-gray-50">
       {/* Hero Section */}
       <section className="relative bg-white py-20 sm:py-32 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-50 to-white opacity-50" />
+        <div className="absolute inset-0 bg-linear-to-br from-blue-50 to-white opacity-50" />
         <div className="container relative mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="inline-flex items-center rounded-full border px-3 py-1 text-sm font-medium bg-blue-50 text-blue-700 mb-6">
             <MessageSquare className="mr-2 h-4 w-4" />
@@ -113,7 +113,7 @@ export default function ContactPage() {
               </div>
             </div>
 
-            <div className="bg-gradient-to-br from-blue-600 to-blue-700 p-8 rounded-xl shadow-lg text-white">
+            <div className="bg-linear-to-br from-blue-600 to-blue-700 p-8 rounded-xl shadow-lg text-white">
               <div className="flex items-center gap-3 mb-4">
                 <Clock className="h-6 w-6" />
                 <h3 className="text-xl font-bold">Business Hours</h3>

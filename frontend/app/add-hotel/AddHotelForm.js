@@ -238,9 +238,9 @@ export default function AddHotelForm() {
           </div>
 
           <div>
-            <label className="block text-sm font-semibold text-slate-700 mb-2">Price per Night ($)</label>
+            <label className="block text-sm font-semibold text-slate-700 mb-2">Price per Night (₹)</label>
             <div className="relative">
-              <span className="absolute left-4 top-2.5 text-slate-500">$</span>
+              <span className="absolute left-4 top-2.5 text-slate-500">₹</span>
               <input
                 type="number"
                 name="price"

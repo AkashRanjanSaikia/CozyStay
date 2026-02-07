@@ -3,6 +3,8 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import { motion } from "framer-motion";
+import { User, Mail, Lock, Loader2, Eye, EyeOff, ArrowRight } from "lucide-react";
 
 export default function Signup() {
   const router = useRouter();
@@ -10,6 +12,8 @@ export default function Signup() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirm, setConfirm] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirm, setShowConfirm] = useState(false);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
@@ -45,176 +49,186 @@ export default function Signup() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-linear-to-br from-slate-900 via-slate-800 to-slate-700 px-4 py-8">
-      <div className="w-full max-w-md">
-        <div className="bg-white/6 backdrop-blur-md border border-white/8 rounded-2xl p-6 sm:p-8 shadow-lg text-white">
-          <div className="flex items-center gap-3 mb-4">
-            <div className=" text-2xl h-10 w-10 rounded-lg bg-white/80 flex items-center justify-center text-blue-600 font-bold">
+    <div className="min-h-screen flex items-center justify-center bg-linear-to-br from-slate-900 via-slate-800 to-slate-900 px-4 py-8 relative overflow-hidden">
+      {/* Background blobs */}
+      <div className="absolute top-[-10%] right-[-10%] w-96 h-96 bg-indigo-600/20 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute bottom-[-10%] left-[-10%] w-96 h-96 bg-blue-600/20 rounded-full blur-3xl pointer-events-none" />
+
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+        className="w-full max-w-sm relative z-10 mt-12"
+      >
+        <div className="bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl p-6 shadow-2xl text-white">
+          <div className="flex flex-col items-center mb-6">
+            <div className="h-12 w-12 rounded-xl bg-linear-to-tr from-blue-500 to-indigo-600 flex items-center justify-center text-white font-bold text-xl shadow-lg mb-4">
               CS
             </div>
-            <div>
-              <h2 className="text-2xl font-semibold">Create your account</h2>
-              <p className="text-sm text-white/80">
-                Join CozyStay to book great stays
-              </p>
-            </div>
+            <h2 className="text-3xl font-bold tracking-tight">Create Account</h2>
+            <p className="text-white/60 mt-2 text-center">
+              Join CozyStay to book great stays
+            </p>
           </div>
 
           {error && (
-            <div
-              className="mb-4 rounded-md bg-red-900/30 border border-red-700/30 px-3 py-2 text-sm text-red-300"
-              role="alert"
+            <motion.div
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: "auto" }}
+              className="mb-6 rounded-lg bg-red-500/10 border border-red-500/20 px-4 py-3 text-sm text-red-200 flex items-center gap-2"
             >
+              <div className="w-1.5 h-1.5 rounded-full bg-red-400 shrink-0" />
               {error}
-            </div>
+            </motion.div>
           )}
 
-          <form onSubmit={handleSignup} className="space-y-4">
-            <div>
-              <label htmlFor="name" className="sr-only">
-                Full name
+          <form onSubmit={handleSignup} className="space-y-5">
+            <div className="space-y-1.5">
+              <label
+                htmlFor="name"
+                className="text-sm font-medium text-white/80 ml-1"
+              >
+                Full Name
               </label>
-              <input
-                id="name"
-                name="name"
-                type="text"
-                placeholder="Full name"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                required
-                className="w-full bg-white/8 border border-white/10 text-white placeholder-white/60 rounded-lg px-3 py-2.5 focus:outline-none focus:ring-2 focus:ring-blue-400"
-              />
-            </div>
-
-            <div>
-              <label htmlFor="email" className="sr-only">
-                Email
-              </label>
-              <input
-                id="email"
-                name="email"
-                type="email"
-                placeholder="you@company.com"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
-                className="w-full bg-white/8 border border-white/10 text-white placeholder-white/60 rounded-lg px-3 py-2.5 focus:outline-none focus:ring-2 focus:ring-blue-400"
-              />
-            </div>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-              <div>
-                <label htmlFor="password" className="sr-only">
-                  Password
-                </label>
+              <div className="relative group">
+                <div className="absolute left-3 top-1/2 -translate-y-1/2 text-white/40 group-focus-within:text-blue-400 transition-colors">
+                  <User size={18} />
+                </div>
                 <input
-                  id="password"
-                  name="password"
-                  type="password"
-                  placeholder="Password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
+                  id="name"
+                  name="name"
+                  type="text"
+                  placeholder="John Doe"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
                   required
-                  className="w-full bg-white/8 border border-white/10 text-white placeholder-white/60 rounded-lg px-3 py-2.5 focus:outline-none focus:ring-2 focus:ring-blue-400"
+                  className="w-full bg-black/20 border border-white/10 text-white placeholder-white/40 rounded-xl pl-10 pr-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500/50 transition-all"
                 />
               </div>
+            </div>
 
-              <div>
-                <label htmlFor="confirm" className="sr-only">
-                  Confirm password
-                </label>
+            <div className="space-y-1.5">
+              <label
+                htmlFor="email"
+                className="text-sm font-medium text-white/80 ml-1"
+              >
+                Email Address
+              </label>
+              <div className="relative group">
+                <div className="absolute left-3 top-1/2 -translate-y-1/2 text-white/40 group-focus-within:text-blue-400 transition-colors">
+                  <Mail size={18} />
+                </div>
                 <input
-                  id="confirm"
-                  name="confirm"
-                  type="password"
-                  placeholder="Confirm password"
-                  value={confirm}
-                  onChange={(e) => setConfirm(e.target.value)}
+                  id="email"
+                  name="email"
+                  type="email"
+                  placeholder="name@example.com"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                   required
-                  className="w-full bg-white/8 border border-white/10 text-white placeholder-white/60 rounded-lg px-3 py-2.5 focus:outline-none focus:ring-2 focus:ring-blue-400"
+                  className="w-full bg-black/20 border border-white/10 text-white placeholder-white/40 rounded-xl pl-10 pr-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500/50 transition-all"
                 />
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div className="space-y-1.5">
+                <label
+                  htmlFor="password"
+                  className="text-sm font-medium text-white/80 ml-1"
+                >
+                  Password
+                </label>
+                <div className="relative group">
+                  <div className="absolute left-3 top-1/2 -translate-y-1/2 text-white/40 group-focus-within:text-blue-400 transition-colors">
+                    <Lock size={18} />
+                  </div>
+                  <input
+                    id="password"
+                    name="password"
+                    type={showPassword ? "text" : "password"}
+                    placeholder="••••••••"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    required
+                    className="w-full bg-black/20 border border-white/10 text-white placeholder-white/40 rounded-xl pl-10 pr-10 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500/50 transition-all"
+                  />
+                  <button
+                    type="button"
+                    onClick={() => setShowPassword(!showPassword)}
+                    className="absolute right-3 top-1/2 -translate-y-1/2 text-white/40 hover:text-white/70 transition-colors focus:outline-none"
+                  >
+                    {showPassword ? <EyeOff size={16} /> : <Eye size={16} />}
+                  </button>
+                </div>
+              </div>
+
+              <div className="space-y-1.5">
+                <label
+                  htmlFor="confirm"
+                  className="text-sm font-medium text-white/80 ml-1"
+                >
+                  Confirm
+                </label>
+                <div className="relative group">
+                  <div className="absolute left-3 top-1/2 -translate-y-1/2 text-white/40 group-focus-within:text-blue-400 transition-colors">
+                    <Lock size={18} />
+                  </div>
+                  <input
+                    id="confirm"
+                    name="confirm"
+                    type={showConfirm ? "text" : "password"}
+                    placeholder="••••••••"
+                    value={confirm}
+                    onChange={(e) => setConfirm(e.target.value)}
+                    required
+                    className="w-full bg-black/20 border border-white/10 text-white placeholder-white/40 rounded-xl pl-10 pr-10 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500/50 transition-all"
+                  />
+                  <button
+                    type="button"
+                    onClick={() => setShowConfirm(!showConfirm)}
+                    className="absolute right-3 top-1/2 -translate-y-1/2 text-white/40 hover:text-white/70 transition-colors focus:outline-none"
+                  >
+                    {showConfirm ? <EyeOff size={16} /> : <Eye size={16} />}
+                  </button>
+                </div>
               </div>
             </div>
 
             <button
               type="submit"
               disabled={loading}
-              className="w-full inline-flex items-center justify-center gap-2 bg-linear-to-r from-blue-500 to-indigo-600 hover:from-blue-600 px-4 py-2.5 rounded-full text-white font-semibold disabled:opacity-60"
+              className="w-full group relative overflow-hidden bg-linear-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white font-semibold py-3.5 rounded-xl shadow-lg shadow-blue-500/20 transition-all duration-300 transform hover:-translate-y-0.5 disabled:opacity-70 disabled:hover:translate-y-0 cursor-pointer mt-2"
             >
-              {loading ? (
-                <svg
-                  className="h-5 w-5 animate-spin text-white"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                >
-                  <circle
-                    className="opacity-25"
-                    cx="12"
-                    cy="12"
-                    r="10"
-                    stroke="currentColor"
-                    strokeWidth="4"
-                  ></circle>
-                  <path
-                    className="opacity-75"
-                    fill="currentColor"
-                    d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"
-                  ></path>
-                </svg>
-              ) : (
-                "Create account"
-              )}
+              <div className="flex items-center justify-center gap-2">
+                {loading ? (
+                  <Loader2 className="animate-spin" size={20} />
+                ) : (
+                  <>
+                    Create Account
+                    <ArrowRight
+                      size={18}
+                      className="group-hover:translate-x-1 transition-transform"
+                    />
+                  </>
+                )}
+              </div>
             </button>
           </form>
 
-          {/* <div className="mt-4 text-center text-sm text-white/80">
-            Or continue with
+          <div className="mt-8 text-center">
+            <p className="text-white/60 text-sm">
+              Already have an account?{" "}
+              <Link
+                href="/auth/login"
+                className="text-blue-300 font-medium hover:text-blue-200 hover:underline transition-colors"
+              >
+                Log in
+              </Link>
+            </p>
           </div>
-
-          <div className="mt-3 grid grid-cols-2 gap-3">
-            <button
-              className="w-full inline-flex items-center justify-center gap-2 rounded-lg px-3 py-2 bg-white/8 hover:bg-white/12 border border-white/6 text-white"
-              aria-label="Continue with Google"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-4 w-4"
-                viewBox="0 0 24 24"
-                fill="none"
-              >
-                <path
-                  d="M21.35 11.1H12v2.8h5.35c-.25 1.4-1 2.6-2.15 3.4v2.8h3.45c2-1.85 3.15-4.6 3.15-8 0-.7-.06-1.35-.1-1.5z"
-                  fill="currentColor"
-                />
-              </svg>
-              <span className="text-sm">Google</span>
-            </button>
-
-            <button
-              className="w-full inline-flex items-center justify-center gap-2 rounded-lg px-3 py-2 bg-white/8 hover:bg-white/12 border border-white/6 text-white"
-              aria-label="Continue with GitHub"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-4 w-4"
-                viewBox="0 0 24 24"
-                fill="currentColor"
-              >
-                <path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.38 7.86 10.9.58.1.79-.25.79-.56 0-.28-.01-1.02-.02-2-3.2.7-3.88-1.54-3.88-1.54-.53-1.36-1.3-1.72-1.3-1.72-1.06-.72.08-.7.08-.7 1.17.08 1.78 1.2 1.78 1.2 1.04 1.78 2.73 1.26 3.4.97.11-.76.41-1.26.75-1.55-2.55-.29-5.23-1.28-5.23-5.7 0-1.26.45-2.29 1.2-3.1-.12-.29-.52-1.46.11-3.04 0 0 .98-.31 3.2 1.18a11.1 11.1 0 012.92-.4c.99.01 1.98.13 2.92.4 2.22-1.49 3.2-1.18 3.2-1.18.63 1.58.23 2.75.12 3.04.75.81 1.2 1.84 1.2 3.1 0 4.43-2.69 5.40-5.25 5.69.42.37.8 1.1.8 2.22 0 1.6-.01 2.88-.01 3.27 0 .31.21.66.8.55C20.71 21.38 24 17.08 24 12c0-6.35-5.15-11.5-12-11.5z" />
-              </svg>
-              <span className="text-sm">GitHub</span>
-            </button>
-          </div> */}
-
-          <p className="mt-4 text-center text-sm text-white/80">
-            Already have an account?{" "}
-            <Link href="/auth/login" className="text-blue-300 hover:underline">
-              Log in
-            </Link>
-          </p>
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 }

@@ -120,7 +120,7 @@ export default function HotelsClient({ listings = [] }) {
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
-        className="pt-4 sm:pt-4 mb-6 sm:mb-12"
+        className="pt-7 sm:pt-4 mb-6 sm:mb-12"
       >
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 sm:gap-6 mb-4 sm:mb-8">
           <div>

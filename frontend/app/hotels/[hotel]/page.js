@@ -564,7 +564,7 @@ export default function HotelDetail() {
         >
           <div className="flex items-center justify-between">
             <div>
-              <h3 className="text-xl font-bold text-gray-800 dark:text-white">
+              <h3 className="text-lg sm:text-xl font-bold text-gray-800 dark:text-white">
                 {hotelData.title}
               </h3>
               <p className="text-sm text-gray-500 flex items-center gap-1 mt-1">
@@ -572,7 +572,7 @@ export default function HotelDetail() {
               </p>
             </div>
             <div className="text-right">
-              <div className="text-2xl font-bold text-blue-600 dark:text-blue-400">
+              <div className="text-xl sm:text-2xl font-bold text-blue-600 dark:text-blue-400">
                 {formatCurrency(hotelData.price)}
               </div>
               <div className="text-sm text-gray-500">per night</div>
