@@ -11,6 +11,21 @@ import {
   MessageSquare,
   HelpCircle
 } from "lucide-react";
+import { motion } from "framer-motion";
+
+const fadeInUp = {
+  initial: { opacity: 0, y: 20 },
+  animate: { opacity: 1, y: 0 },
+  transition: { duration: 0.5 }
+};
+
+const staggerContainer = {
+  animate: {
+    transition: {
+      staggerChildren: 0.1
+    }
+  }
+};
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -49,26 +64,46 @@ export default function ContactPage() {
       {/* Hero Section */}
       <section className="relative bg-white py-20 sm:py-32 overflow-hidden">
         <div className="absolute inset-0 bg-linear-to-br from-blue-50 to-white opacity-50" />
-        <div className="container relative mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div className="inline-flex items-center rounded-full border px-3 py-1 text-sm font-medium bg-blue-50 text-blue-700 mb-6">
+        <motion.div 
+          className="container relative mx-auto px-4 sm:px-6 lg:px-8 text-center"
+          initial="initial"
+          animate="animate"
+          variants={staggerContainer}
+        >
+          <motion.div 
+            variants={fadeInUp}
+            className="mt-2 sm:mt-0 inline-flex items-center rounded-full border px-3 py-1 text-sm font-medium bg-blue-50 text-blue-700 mb-6"
+          >
             <MessageSquare className="mr-2 h-4 w-4" />
             We&apos;re here to help
-          </div>
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-gray-900 mb-6">
+          </motion.div>
+          <motion.h1 
+            variants={fadeInUp}
+            className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-gray-900 mb-6"
+          >
             Contact <span className="text-blue-600">Us</span>
-          </h1>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
+          </motion.h1>
+          <motion.p 
+            variants={fadeInUp}
+            className="text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed"
+          >
             Have questions about our services or need assistance? Our team is ready to provide you with the support you need.
-          </p>
-        </div>
+          </motion.p>
+        </motion.div>
       </section>
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 -mt-10">
         <div className="grid lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
           {/* Contact Information Cards */}
-          <div className="lg:col-span-1 space-y-6">
+          <motion.div 
+            className="lg:col-span-1 space-y-6"
+            initial="initial"
+            whileInView="animate"
+            viewport={{ once: true }}
+            variants={staggerContainer}
+          >
             {/* Info Cards */}
-            <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
+            <motion.div variants={fadeInUp} className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
               <div className="flex items-start gap-4">
                 <div className="p-3 bg-blue-50 rounded-lg">
                   <MapPin className="h-6 w-6 text-blue-600" />
@@ -81,9 +116,9 @@ export default function ContactPage() {
                   </p>
                 </div>
               </div>
-            </div>
+            </motion.div>
 
-            <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
+            <motion.div variants={fadeInUp} className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
               <div className="flex items-start gap-4">
                 <div className="p-3 bg-green-50 rounded-lg">
                   <Mail className="h-6 w-6 text-green-600" />
@@ -96,9 +131,9 @@ export default function ContactPage() {
                   </p>
                 </div>
               </div>
-            </div>
+            </motion.div>
 
-            <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
+            <motion.div variants={fadeInUp} className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
               <div className="flex items-start gap-4">
                 <div className="p-3 bg-purple-50 rounded-lg">
                   <Phone className="h-6 w-6 text-purple-600" />
@@ -111,9 +146,9 @@ export default function ContactPage() {
                   </p>
                 </div>
               </div>
-            </div>
+            </motion.div>
 
-            <div className="bg-linear-to-br from-blue-600 to-blue-700 p-8 rounded-xl shadow-lg text-white">
+            <motion.div variants={fadeInUp} className="bg-linear-to-br from-blue-600 to-blue-700 p-8 rounded-xl shadow-lg text-white">
               <div className="flex items-center gap-3 mb-4">
                 <Clock className="h-6 w-6" />
                 <h3 className="text-xl font-bold">Business Hours</h3>
@@ -132,11 +167,17 @@ export default function ContactPage() {
                   <span>Closed</span>
                 </div>
               </div>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
 
           {/* Contact Form */}
-          <div className="lg:col-span-2">
+          <motion.div 
+            className="lg:col-span-2"
+            initial={{ opacity: 0, x: 20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+          >
             <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-8 sm:p-10">
               <div className="flex items-center gap-3 mb-8">
                 <div className="p-3 bg-blue-50 rounded-full">
@@ -242,7 +283,7 @@ export default function ContactPage() {
                 </Button>
               </form>
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
     </div>

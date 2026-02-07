@@ -48,12 +48,12 @@ export default function Home() {
       <div className="fixed inset-0 bg-linear-to-b from-black/70 via-black/50 to-black/70  " />
       
       {/* Content */}
-      <div className="relative z-20 flex flex-col items-center justify-center text-center text-white px-4 sm:px-6 lg:px-8 py-17 sm:py-16 lg:py-20 mt-8 sm:mt-10">
+      <div className="relative z-20 flex flex-col items-center justify-center text-center text-white px-4 sm:px-6 lg:px-8 py-14 sm:py-16 lg:py-20 mt-8 sm:mt-10">
         <motion.h1 
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="text-5xl md:text-4xl lg:text-6xl font-extrabold leading-tight sm:leading-tight lg:leading-tight mb-4 sm:mb-4 drop-shadow-lg max-w-4xl"
+          className="text-5xl md:text-4xl lg:text-6xl font-extrabold leading-tight sm:leading-tight lg:leading-tight mb-6 sm:mb-4 drop-shadow-lg max-w-4xl"
         >
           Find your perfect stay
         </motion.h1>
@@ -203,15 +203,31 @@ export default function Home() {
           </div>
         </motion.form>
 
+        {/* Explore All Hotels CTA */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.4 }}
+          className="mt-8 sm:mt-16 flex justify-center"
+        >
+          <Link 
+            href="/hotels"
+            className="group inline-flex items-center gap-2 text-white hover:text-white/80 transition-colors font-medium text-lg"
+          >
+            <span className="border-b border-transparent group-hover:border-white/80 transition-all">Explore All Hotels</span>
+            <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
+          </Link>
+        </motion.div>
+
         {/* Popular Destinations Section */}
         <motion.section 
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.6 }}
-          className="mt-16 w-full max-w-6xl mx-auto"
+          className=" mt-20 sm:mt-7 w-full max-w-6xl mx-auto"
         >
           <div className="flex justify-between items-center mb-6">
-            <h2 className="text-2xl font-bold">Popular Destinations</h2>
+            <h2 className="text-xl sm:text-2xl font-bold">Popular Destinations</h2>
             <Link href="/hotels" className="hover:text-blue-300 flex items-center gap-1 transition-colors">
               View all <ArrowRight className="w-4 h-4" />
             </Link>

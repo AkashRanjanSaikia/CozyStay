@@ -94,7 +94,7 @@ function BookingCard({ booking, isPast }) {
             className="w-full h-full object-cover" 
           />
           <div className="absolute top-4 right-4 bg-white/90 px-3 py-1 rounded-full text-sm font-semibold shadow-sm">
-             ${booking.totalPrice}
+             ₹{booking.totalPrice}
           </div>
         </div>
       ) : (
