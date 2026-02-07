@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
+import { useState , useRef } from "react";
 import { Search, MapPin, ArrowRight, Calendar, Users } from "lucide-react";
 import { motion } from "framer-motion";
 import Link from "next/link";
@@ -12,6 +12,8 @@ export default function Home() {
   const [checkin, setCheckin] = useState("");
   const [checkout, setCheckout] = useState("");
   const [guests, setGuests] = useState("1");
+  const checkinRef = useRef(null);
+  const checkoutRef = useRef(null);
   const [popularDestinations, setPopularDestinations] = useState([
     { id: 1, name: "Bali", image: "/bali.jpg", properties: 245 },
     { id: 2, name: "Dubai", image: "/dubai.webp", properties: 312 },
@@ -90,50 +92,62 @@ export default function Home() {
                 placeholder="Where are you going?"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-10 pr-4 py-3 text-sm sm:text-base rounded-lg bg-white/10 placeholder-white/70 text-white focus:outline-none focus:ring-2 focus:ring-blue-400 transition"
+                className="w-full pl-10 pr-4 py-3 text-sm sm:text-base rounded-lg bg-white/10 placeholder-white/70 text-white focus:outline-none focus:ring-2 focus:ring-blue-400 transition "
               />
             </div>
 
             {/* Date & Guest Inputs */}
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 flex-1 w-full sm:w-auto">
-              <div className="relative">
+              <div 
+                className="relative w-full cursor-pointer bg-white/10 rounded-lg border border-white/15 focus-within:ring-2 focus-within:ring-blue-400 transition"
+                onClick={() => checkinRef.current?.showPicker()}
+              >
                 <label htmlFor="checkin" className="sr-only">
                   Check-in
                 </label>
                 <div className="absolute left-3 sm:left-2 top-1/2 transform -translate-y-1/2 text-white/70 pointer-events-none">
                   <Calendar className="w-4 h-4" />
                 </div>
+                {!checkin && (
+                  <div className="absolute left-10 sm:left-8 top-1/2 transform -translate-y-1/2 text-white/70 pointer-events-none text-sm sm:text-base">
+                    Check-in
+                  </div>
+                )}
                 <input
+                  ref={checkinRef}
                   id="checkin"
                   name="checkin"
-                  type="text"
-                  placeholder="Check-in"
-                  onFocus={(e) => (e.target.type = "date")}
-                  onBlur={(e) => (e.target.type = e.target.value ? "date" : "text")}
+                  type="date"
                   value={checkin}
                   onChange={(e) => setCheckin(e.target.value)}
-                  className="w-full pl-10  sm:pl-8 py-3 text-sm sm:text-base rounded-lg bg-white/10 text-white focus:outline-none focus:ring-2 focus:ring-blue-400 transition border border-white/15 placeholder-white/70 scheme-dark"
+                  className={`w-full pl-10 sm:pl-8 py-3 text-sm sm:text-base bg-transparent border-none outline-none text-white scheme-dark [&::-webkit-calendar-picker-indicator]:opacity-0 ${checkin ? 'opacity-100' : 'opacity-0'}`}
                 />
                 
               </div>
 
-              <div className="relative">
+              <div 
+                className="relative w-full cursor-pointer bg-white/10 rounded-lg border border-white/15 focus-within:ring-2 focus-within:ring-blue-400 transition"
+                onClick={() => checkoutRef.current?.showPicker()}
+              >
                 <label htmlFor="checkout" className="sr-only">
                   Check-out
                 </label>
                 <div className="absolute left-3 sm:left-1 top-1/2 transform -translate-y-1/2 text-white/70 pointer-events-none">
                   <Calendar className="w-4 h-4" />
                 </div>
+                {!checkout && (
+                  <div className="absolute left-10 sm:left-6 top-1/2 transform -translate-y-1/2 text-white/70 pointer-events-none text-sm sm:text-base">
+                    Check-out
+                  </div>
+                )}
                 <input
+                  ref={checkoutRef}
                   id="checkout"
                   name="checkout"
-                  type="text"
-                  placeholder="Check-out"
-                  onFocus={(e) => (e.target.type = "date")}
-                  onBlur={(e) => (e.target.type = e.target.value ? "date" : "text")}
+                  type="date"
                   value={checkout}
                   onChange={(e) => setCheckout(e.target.value)}
-                  className="w-full pl-10 sm:pl-6 py-3 text-sm sm:text-base rounded-lg bg-white/10 text-white focus:outline-none focus:ring-2 focus:ring-blue-400 transition border border-white/15 placeholder-white/70 scheme-dark"
+                  className={`w-full pl-10 sm:pl-6 py-3 text-sm sm:text-base bg-transparent border-none outline-none text-white scheme-dark [&::-webkit-calendar-picker-indicator]:opacity-0 ${checkout ? 'opacity-100' : 'opacity-0'}`}
                 />
               </div>
 
@@ -141,7 +155,7 @@ export default function Home() {
                 <label htmlFor="guests" className="sr-only">
                   Guests
                 </label>
-                <div className="absolute left-3 top-1/2 transform -translate-y-1/2 text-white/70 pointer-events-none">
+                <div className="absolute left-3 sm:left-2 top-1/2 transform -translate-y-1/2 text-white/70 pointer-events-none">
                   <Users className="w-4 h-4" />
                 </div>
                 <select
@@ -149,7 +163,7 @@ export default function Home() {
                   name="guests"
                   value={guests}
                   onChange={(e) => setGuests(e.target.value)}
-                  className="w-full appearance-none pl-10 sm:pl-8 pr-4 py-3 text-sm sm:text-base rounded-lg bg-white/10 text-white cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-400 transition border border-white/15"
+                  className="w-full appearance-none pl-10 sm:pl-7 pr-4 py-3 text-sm sm:text-base rounded-lg bg-white/10 text-white cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-400 transition border border-white/15"
                 >
                   <option value="1" className="text-black bg-white">
                     1 guest

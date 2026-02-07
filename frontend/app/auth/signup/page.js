@@ -49,8 +49,8 @@ export default function Signup() {
       <div className="w-full max-w-md">
         <div className="bg-white/6 backdrop-blur-md border border-white/8 rounded-2xl p-6 sm:p-8 shadow-lg text-white">
           <div className="flex items-center gap-3 mb-4">
-            <div className="h-10 w-10 rounded-lg bg-white/80 flex items-center justify-center text-blue-600 font-bold">
-              W
+            <div className=" text-2xl h-10 w-10 rounded-lg bg-white/80 flex items-center justify-center text-blue-600 font-bold">
+              CS
             </div>
             <div>
               <h2 className="text-2xl font-semibold">Create your account</h2>

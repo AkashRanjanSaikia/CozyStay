@@ -59,6 +59,7 @@ export default function HotelsClient({ listings = [] }) {
     checkout: "",
     guests: "1"
   });
+  const [isMobileSearchOpen, setIsMobileSearchOpen] = useState(false);
   const [isFavorite, setIsFavorite] = useState([]);
   const { user } = useContext(UserContext);
   
@@ -119,50 +120,70 @@ export default function HotelsClient({ listings = [] }) {
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
-        className="pt-8 sm:pt-4 mb-12"
+        className="pt-4 sm:pt-4 mb-6 sm:mb-12"
       >
-        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 mb-8">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 sm:gap-6 mb-4 sm:mb-8">
           <div>
-            <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 tracking-tight">
+            <h1 className="text-2xl sm:text-4xl font-bold text-gray-900 tracking-tight">
               Discover Hotels
             </h1>
-            <p className="mt-3 text-base text-gray-600 max-w-2xl leading-relaxed">
+            <p className="hidden sm:block mt-3 text-base text-gray-600 max-w-2xl leading-relaxed">
               Browse our curated collection of premium stays — experience
               comfort, luxury, and unforgettable moments.
             </p>
           </div>
 
-          <div className="flex items-center gap-2 px-4 py-2 bg-white rounded-full shadow-sm text-sm text-gray-700 font-medium w-fit border border-gray-100">
+          <div className="hidden sm:flex items-center gap-2 px-4 py-2 bg-white rounded-full shadow-sm text-sm text-gray-700 font-medium w-fit border border-gray-100">
             <span>{listings.length}</span>
             <span>{listings.length === 1 ? "property" : "properties"}</span>
             <span>available</span>
           </div>
         </div>
 
-        <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 items-stretch sm:items-center justify-between mb-6">
-          <div className="relative w-full sm:w-96">
-            <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-              <Search className="h-5 w-5 text-gray-400" />
+        <div className="flex flex-row gap-2 sm:gap-4 items-center justify-between mb-6">
+          <div className={`relative transition-all duration-300 ${isMobileSearchOpen ? 'w-full' : 'w-auto sm:w-96'}`}>
+            {!isMobileSearchOpen && (
+              <button 
+                onClick={() => setIsMobileSearchOpen(true)}
+                className="sm:hidden flex items-center justify-center p-3 rounded-xl border border-gray-200 bg-gray-50 text-gray-600"
+              >
+                <Search className="h-5 w-5" />
+              </button>
+            )}
+
+            <div className={`${!isMobileSearchOpen ? 'hidden sm:block' : 'block'} relative w-full`}>
+              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                <Search className="h-5 w-5 text-gray-400" />
+              </div>
+              <input
+                type="text"
+                placeholder="Search by location..."
+                className="pl-10 pr-10 py-3 w-full rounded-xl border border-gray-200 bg-gray-50 focus:bg-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all outline-none shadow-sm"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                autoFocus={isMobileSearchOpen}
+              />
+              {isMobileSearchOpen && (
+                <button 
+                  onClick={() => { setIsMobileSearchOpen(false); setSearchQuery(''); }}
+                  className="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-400"
+                >
+                  <X className="h-5 w-5" />
+                </button>
+              )}
             </div>
-            <input
-              type="text"
-              placeholder="Search by location, hotel name..."
-              className="pl-10 pr-4 py-3 w-full rounded-xl border border-gray-200 bg-gray-50 focus:bg-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all outline-none shadow-sm"
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-            />
           </div>
 
           <button
             onClick={() => setShowFilters(!showFilters)}
-            className={`flex items-center justify-center gap-2 px-6 py-3 rounded-xl border font-medium transition-all shadow-sm ${
+            className={`flex items-center justify-center gap-2 px-3 sm:px-6 py-3 rounded-xl border font-medium transition-all shadow-sm ${
               showFilters
                 ? "bg-gray-900 text-white border-gray-900 ring-2 ring-gray-900 ring-offset-2"
                 : "bg-white text-gray-700 border-gray-200 hover:bg-gray-50 hover:border-gray-300"
-            }`}
+            } ${isMobileSearchOpen ? 'hidden' : 'flex'}`}
           >
             <Filter className="h-5 w-5" />
-            <span>{showFilters ? "Hide Filters" : "Filters"}</span>
+            <span className="hidden sm:inline">{showFilters ? "Hide Filters" : "Filters"}</span>
             {activeFilters.length > 0 && (
               <span className="ml-1.5 bg-blue-600 text-white text-xs rounded-full min-w-5 h-5 flex items-center justify-center px-1">
                 {activeFilters.length}
