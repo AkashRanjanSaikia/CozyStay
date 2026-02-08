@@ -81,7 +81,7 @@ export default function Navbar() {
           >
             {/* Logo */}
             <Link href="/" className=" flex items-center gap-1 sm:gap-3 group">
-              <div className="  relative overflow-hidden rounded-full ring-2 ring-white/50 shadow-sm transition-transform group-hover:scale-105 duration-300">
+              <div className="  relative overflow-hidden rounded-full ring-2 ring-white/50 shadow-sm transition-transform group-hover:scale-104 duration-300">
                 <Image
                   src="/logo2.png"
                   alt="CozyStay"
@@ -90,7 +90,7 @@ export default function Navbar() {
                   className="h-8 w-8 sm:h-10 sm:w-10 object-cover "
                 />
               </div>
-              <span className="font-bold text-lg sm:text-xl  tracking-tight text-slate-900 group-hover:text-blue-600 transition-colors duration-300">
+              <span className="font-bold text-lg sm:text-xl tracking-tight text-slate-900 group-hover:text-slate-800 transition-colors duration-300">
                 CozyStay
               </span>
             </Link>

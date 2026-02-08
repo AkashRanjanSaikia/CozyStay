@@ -33,8 +33,8 @@ export function DropdownMenuDemo() {
           className="group flex items-center gap-2 p-1 rounded-full border border-transparent hover:bg-accent hover:border-border transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
           aria-label={user?.name ? `User menu for ${user.name}` : "User menu"}
         >
-          <div className="bg-secondary p-2 rounded-full text-muted-foreground group-hover:text-primary group-hover:bg-background group-hover:scale-105 transition-all duration-300 shadow-sm ring-1 ring-transparent group-hover:ring-border">
-            <CircleUserRound className="w-6 h-6" strokeWidth={1.75} />
+          <div className="bg-secondary p-1 rounded-full text-muted-foreground group-hover:text-primary group-hover:bg-background group-hover:scale-105 transition-all duration-300 shadow-sm ring-1 ring-transparent group-hover:ring-border">
+            <CircleUserRound className="w-5 h-5" strokeWidth={1.5} />
           </div>
           {user?.name && (
             <span className="text-sm font-medium text-muted-foreground group-hover:text-foreground pr-3 hidden sm:block transition-colors duration-300">
