@@ -38,6 +38,7 @@ export default function HotelDetailClient({ initialHotelData }) {
   const [reviewText, setReviewText] = useState("");
   const [reviewRating, setReviewRating] = useState(0);
   const [reviewMessage, setReviewMessage] = useState("");
+  const [reviewSubmitting, setReviewSubmitting] = useState(false);
   const [isFirstLoad, setIsFirstLoad] = useState(true);
 
   const { user } = useContext(UserContext);
@@ -250,6 +251,8 @@ export default function HotelDetailClient({ initialHotelData }) {
       setReviewMessage("Please select a star rating.");
       return;
     }
+    
+    setReviewSubmitting(true);
     try {
       const res = await fetch(
         `${process.env.NEXT_PUBLIC_BACKEND_URL}/listings/${hotelData._id}/reviews`,
@@ -278,6 +281,8 @@ export default function HotelDetailClient({ initialHotelData }) {
     } catch (err) {
       console.error("Review submit error:", err);
       setReviewMessage("Failed to submit review due to network error.");
+    } finally {
+      setReviewSubmitting(false);
     }
   };
 
@@ -775,9 +780,40 @@ export default function HotelDetailClient({ initialHotelData }) {
 
                 <button
                   type="submit"
-                  className="w-full inline-flex items-center justify-center px-4 py-2.5 rounded-lg bg-blue-600 text-white text-sm font-semibold hover:bg-blue-700 transition-colors"
+                  disabled={reviewSubmitting || !reviewRating}
+                  className={`w-full py-3.5 rounded-lg text-white font-semibold shadow-md transition duration-200 mt-6 ${
+                    reviewSubmitting || !reviewRating
+                      ? "bg-slate-400 cursor-not-allowed"
+                      : "bg-linear-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 hover:shadow-lg transform hover:-translate-y-0.5"
+                  }`}
                 >
-                  Submit review
+                  {reviewSubmitting ? (
+                    <span className="flex items-center justify-center">
+                      <svg
+                        className="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                      >
+                        <circle
+                          className="opacity-25"
+                          cx="12"
+                          cy="12"
+                          r="10"
+                          stroke="currentColor"
+                          strokeWidth="4"
+                        ></circle>
+                        <path
+                          className="opacity-75"
+                          fill="currentColor"
+                          d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                        ></path>
+                      </svg>
+                      Processing...
+                    </span>
+                  ) : (
+                    "Submit review"
+                  )}
                 </button>
               </form>
             ) : (
