@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useState, useContext } from "react";
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import { Calendar } from "@/components/ui/calendar";
 import Image from "next/image";
 import { UserContext } from "../../context/usercontext";
@@ -20,6 +20,7 @@ import { differenceInCalendarDays } from "date-fns";
 
 export default function HotelDetailClient({ initialHotelData }) {
   const { hotel } = useParams();
+  const router = useRouter();
   const [hotelData, setHotelData] = useState(initialHotelData);
   const [range, setRange] = useState({ from: null, to: null });
   const [loading, setLoading] = useState(false);
@@ -281,6 +282,18 @@ export default function HotelDetailClient({ initialHotelData }) {
   return (
     <main className="relative">
       <div className="relative w-full h-[350px] sm:h-[500px] lg:h-[500px]  overflow-hidden shadow-xl bg-black">
+        {/* Back Button */}
+        <motion.button
+          initial={{ opacity: 0, x: -20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ delay: 0.2 }}
+          onClick={() => router.back()}
+          className="hidden xl:block  absolute top-8  left-6  z-50 p-2 bg-black/80 backdrop-blur-md hover:bg-black/40 text-white rounded-full transition-all border border-white/20 group cursor-pointer"
+          aria-label="Go back"
+        >
+          <ChevronLeft className="w-6 h-6 group-hover:-translate-x-0.5 transition-transform" />
+        </motion.button>
+
         {/* Hotel Background Image with Directional Sliding Effect */}
         <AnimatePresence mode="sync">
           <motion.div 
