@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { useContext, useState, useEffect } from "react";
+import { useContext, useState, useEffect, useRef } from "react";
 import { usePathname } from "next/navigation";
 import { UserContext } from "./context/usercontext";
 import { DropdownMenuDemo } from "./DropdownMenu";
@@ -16,6 +16,29 @@ export default function Navbar() {
   const hideSignup = pathname.startsWith("/auth/signup");
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const menuRef = useRef(null);
+  const buttonRef = useRef(null);
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 768) {
+        setOpen(false);
+      }
+    };
+
+    const handleKeyDown = (event) => {
+      if (event.key === "Escape") {
+        setOpen(false);
+      }
+    };
+
+    window.addEventListener("resize", handleResize);
+    window.addEventListener("keydown", handleKeyDown);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, []);
 
   // Handle scroll effect
   useEffect(() => {
@@ -140,6 +163,7 @@ export default function Navbar() {
             <div className="flex items-center gap-1 md:hidden">
               {user && <DropdownMenuDemo />}
               <button
+                ref={buttonRef}
                 onClick={() => setOpen(!open)}
                 className="p-2 rounded-full text-slate-700 hover:bg-slate-100 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500/50"
                 aria-label="Toggle menu"
@@ -154,13 +178,26 @@ export default function Navbar() {
       {/* Mobile Menu Overlay */}
       <AnimatePresence>
         {open && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            className="fixed top-20 left-4 right-4 z-40 md:hidden overflow-hidden"
-          >
-            <div className="bg-white/90 backdrop-blur-xl rounded-3xl shadow-2xl border border-white/20 p-4 space-y-4">
+          <>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.2 }}
+              className="fixed inset-0 z-40 bg-black/20 backdrop-blur-sm md:hidden"
+              onClick={(e) => {
+                e.stopPropagation();
+                setOpen(false);
+              }}
+            />
+            <motion.div
+              ref={menuRef}
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: "auto" }}
+              exit={{ opacity: 0, height: 0 }}
+              className="fixed top-20 left-4 right-4 z-50 md:hidden overflow-hidden"
+            >
+              <div className="bg-white/90 backdrop-blur-xl rounded-3xl shadow-2xl border border-white/20 p-4 space-y-4">
               <div className="flex flex-col space-y-2">
                 {navLinks.map((link) => (
                   <Link
@@ -203,7 +240,8 @@ export default function Navbar() {
                 ) : null}
               </div>
             </div>
-          </motion.div>
+            </motion.div>
+          </>
         )}
       </AnimatePresence>
     </>

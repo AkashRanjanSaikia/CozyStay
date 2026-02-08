@@ -65,7 +65,9 @@ export default function Login() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
-        className="w-full max-w-sm relative z-10  sm:mt-12"
+        className={`w-full max-w-sm relative z-10  sm:mt-12  ${
+          error ? "mt-12" : "mt-[10%]"
+        }`}
       >
         <div className="bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl p-6 shadow-2xl text-white">
           <div className="flex flex-col items-center mb-6">
@@ -82,7 +84,7 @@ export default function Login() {
             <motion.div
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: "auto" }}
-              className="mb-6 rounded-lg bg-red-500/10 border border-red-500/20 px-4 py-3 text-sm text-red-200 flex items-center gap-2"
+              className="mb-4 rounded-lg bg-red-500/10 border border-red-500/20 px-4 py-3 text-sm text-red-200 flex items-center gap-2"
             >
               <div className="w-1.5 h-1.5 rounded-full bg-red-400 shrink-0" />
               {error}
