@@ -31,6 +31,14 @@ exports.getListingById = async (req, res) => {
 exports.createListing = async (req, res) => {
   try {
     const { title, description, price, location, country } = req.body;
+
+    if (!title) {
+      return res.status(400).json({ error: "Title is required" });
+    }
+    if (!price) {
+      return res.status(400).json({ error: "Price is required" });
+    }
+
     const defaultOwnerId = new mongoose.Types.ObjectId("672b8f64b23f9f2a1c3e4d77");
     const ownerId = req.body.ownerId || defaultOwnerId;
 
@@ -75,6 +83,7 @@ exports.createListing = async (req, res) => {
           }
         } catch (e) {
           console.error("Error parsing imageUrls:", e.message);
+          return res.status(400).json({ error: "Invalid format for imageUrls" });
         }
       } else if (Array.isArray(req.body.imageUrls)) {
         urls = req.body.imageUrls;
@@ -102,6 +111,7 @@ exports.createListing = async (req, res) => {
           }
         } catch (e) {
           console.error("Error parsing images:", e.message);
+           return res.status(400).json({ error: "Invalid format for images" });
         }
       }
     }
@@ -131,6 +141,9 @@ exports.createListing = async (req, res) => {
     });
   } catch (err) {
     console.error("❌ Error creating listing:", err);
+    if (err.name === 'ValidationError') {
+      return res.status(400).json({ error: err.message });
+    }
     res.status(500).json({ error: err.message });
   }
 };
