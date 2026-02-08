@@ -56,7 +56,7 @@ export default function Login() {
   if (!mounted) return null;
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-linear-to-br from-slate-900 via-slate-800 to-slate-900 px-4 py-8 relative overflow-hidden">
+    <div className="min-h-screen flex items-center justify-center bg-linear-to-br from-slate-900 via-slate-800 to-slate-900 px-4 py-6 sm:py-8 relative overflow-hidden">
       {/* Background blobs for visual interest */}
       <div className="absolute top-[-10%] left-[-10%] w-96 h-96 bg-blue-600/20 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute bottom-[-10%] right-[-10%] w-96 h-96 bg-indigo-600/20 rounded-full blur-3xl pointer-events-none" />
@@ -93,11 +93,11 @@ export default function Login() {
             <div className="space-y-1.5">
               <label
                 htmlFor="email"
-                className="text-sm font-medium text-white/80 ml-1"
+                className="text-sm font-medium text-white/80 ml-1 "
               >
                 Email Address
               </label>
-              <div className="relative group">
+              <div className="relative group mt-1">
                 <div className="absolute left-3 top-1/2 -translate-y-1/2 text-white/40 group-focus-within:text-blue-400 transition-colors">
                   <Mail size={18} />
                 </div>
@@ -123,12 +123,7 @@ export default function Login() {
                 >
                   Password
                 </label>
-                <a
-                  href="#"
-                  className="text-xs text-blue-300 hover:text-blue-200 hover:underline transition-colors"
-                >
-                  Forgot password?
-                </a>
+                
               </div>
               <div className="relative group">
                 <div className="absolute left-3 top-1/2 -translate-y-1/2 text-white/40 group-focus-within:text-blue-400 transition-colors">
@@ -153,9 +148,18 @@ export default function Login() {
                   {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
                 </button>
               </div>
+              <div className="flex justify-end">
+                <a
+                  href="#"
+                  className="text-xs text-blue-300 hover:text-blue-200 hover:underline transition-colors"
+                >
+                  Forgot password?
+                </a>
+              </div>
             </div>
+            
 
-            <div className="flex items-center gap-2 ml-1">
+            {/* <div className="flex items-center gap-2 ml-1">
               <input
                 type="checkbox"
                 id="remember"
@@ -167,7 +171,7 @@ export default function Login() {
               >
                 Remember me
               </label>
-            </div>
+            </div> */}
 
             <button
               type="submit"

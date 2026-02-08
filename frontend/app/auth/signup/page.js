@@ -58,15 +58,15 @@ export default function Signup() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
-        className="w-full max-w-sm relative z-10 mt-12"
+        className="w-full max-w-sm relative z-10 mt-10 sm:mt-18"
       >
-        <div className="bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl p-6 shadow-2xl text-white">
-          <div className="flex flex-col items-center mb-6">
-            <div className="h-12 w-12 rounded-xl bg-linear-to-tr from-blue-500 to-indigo-600 flex items-center justify-center text-white font-bold text-xl shadow-lg mb-4">
+        <div className="bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl p-4 sm:p-6 shadow-2xl text-white">
+          <div className="flex flex-col items-center mb-4 sm:mb-6">
+            <div className="h-10 w-10 sm:h-12 sm:w-12 rounded-xl bg-linear-to-tr from-blue-500 to-indigo-600 flex items-center justify-center text-white font-bold text-lg sm:text-xl shadow-lg mb-2 sm:mb-4">
               CS
             </div>
-            <h2 className="text-3xl font-bold tracking-tight">Create Account</h2>
-            <p className="text-white/60 mt-2 text-center">
+            <h2 className="text-2xl sm:text-3xl font-bold tracking-tight">Create Account</h2>
+            <p className="text-white/60 mt-1 sm:mt-2 text-center text-sm sm:text-base">
               Join CozyStay to book great stays
             </p>
           </div>
@@ -75,24 +75,24 @@ export default function Signup() {
             <motion.div
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: "auto" }}
-              className="mb-6 rounded-lg bg-red-500/10 border border-red-500/20 px-4 py-3 text-sm text-red-200 flex items-center gap-2"
+              className="mb-4 sm:mb-6 rounded-lg bg-red-500/10 border border-red-500/20 px-4 py-2 sm:py-3 text-sm text-red-200 flex items-center gap-2"
             >
               <div className="w-1.5 h-1.5 rounded-full bg-red-400 shrink-0" />
               {error}
             </motion.div>
           )}
 
-          <form onSubmit={handleSignup} className="space-y-5">
-            <div className="space-y-1.5">
+          <form onSubmit={handleSignup} className="space-y-3 sm:space-y-5">
+            <div className="space-y-1 sm:space-y-1.5">
               <label
                 htmlFor="name"
-                className="text-sm font-medium text-white/80 ml-1"
+                className="text-xs sm:text-sm font-medium text-white/80 ml-1"
               >
                 Full Name
               </label>
-              <div className="relative group">
+              <div className="relative group mt-1">
                 <div className="absolute left-3 top-1/2 -translate-y-1/2 text-white/40 group-focus-within:text-blue-400 transition-colors">
-                  <User size={18} />
+                  <User size={16} className="sm:w-[18px] sm:h-[18px]" />
                 </div>
                 <input
                   id="name"
@@ -102,21 +102,21 @@ export default function Signup() {
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   required
-                  className="w-full bg-black/20 border border-white/10 text-white placeholder-white/40 rounded-xl pl-10 pr-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500/50 transition-all"
+                  className="w-full bg-black/20 border border-white/10 text-white placeholder-white/40 rounded-xl pl-9 sm:pl-10 pr-4 py-[10px] sm:py-3 text-sm sm:text-base focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500/50 transition-all"
                 />
               </div>
             </div>
 
-            <div className="space-y-1.5">
+            <div className="space-y-1 sm:space-y-1.5">
               <label
                 htmlFor="email"
-                className="text-sm font-medium text-white/80 ml-1"
+                className="text-xs sm:text-sm font-medium text-white/80 ml-1"
               >
                 Email Address
               </label>
-              <div className="relative group">
+              <div className="relative group mt-1">
                 <div className="absolute left-3 top-1/2 -translate-y-1/2 text-white/40 group-focus-within:text-blue-400 transition-colors">
-                  <Mail size={18} />
+                  <Mail size={16} className="sm:w-[18px] sm:h-[18px]" />
                 </div>
                 <input
                   id="email"
@@ -126,22 +126,22 @@ export default function Signup() {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   required
-                  className="w-full bg-black/20 border border-white/10 text-white placeholder-white/40 rounded-xl pl-10 pr-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500/50 transition-all"
+                  className="w-full bg-black/20 border border-white/10 text-white placeholder-white/40 rounded-xl pl-9 sm:pl-10 pr-4 py-[10px] sm:py-3 text-sm sm:text-base focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500/50 transition-all"
                 />
               </div>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div className="space-y-1.5">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
+              <div className="space-y-1 sm:space-y-1.5">
                 <label
                   htmlFor="password"
-                  className="text-sm font-medium text-white/80 ml-1"
+                  className="text-xs sm:text-sm font-medium text-white/80 ml-1"
                 >
                   Password
                 </label>
-                <div className="relative group">
+                <div className="relative group mt-1">
                   <div className="absolute left-3 top-1/2 -translate-y-1/2 text-white/40 group-focus-within:text-blue-400 transition-colors">
-                    <Lock size={18} />
+                    <Lock size={16} className="sm:w-[18px] sm:h-[18px]" />
                   </div>
                   <input
                     id="password"
@@ -151,7 +151,7 @@ export default function Signup() {
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     required
-                    className="w-full bg-black/20 border border-white/10 text-white placeholder-white/40 rounded-xl pl-10 pr-10 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500/50 transition-all"
+                    className="w-full bg-black/20 border border-white/10 text-white placeholder-white/40 rounded-xl pl-9 sm:pl-10 pr-9 sm:pr-10 py-[10px] sm:py-3 text-sm sm:text-base focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500/50 transition-all"
                   />
                   <button
                     type="button"
@@ -163,16 +163,16 @@ export default function Signup() {
                 </div>
               </div>
 
-              <div className="space-y-1.5">
+              <div className="space-y-1 sm:space-y-1.5">
                 <label
                   htmlFor="confirm"
-                  className="text-sm font-medium text-white/80 ml-1"
+                  className="text-xs sm:text-sm font-medium text-white/80 ml-1"
                 >
                   Confirm
                 </label>
-                <div className="relative group">
+                <div className="relative group mt-1">
                   <div className="absolute left-3 top-1/2 -translate-y-1/2 text-white/40 group-focus-within:text-blue-400 transition-colors">
-                    <Lock size={18} />
+                    <Lock size={16} className="sm:w-[18px] sm:h-[18px]" />
                   </div>
                   <input
                     id="confirm"
@@ -182,7 +182,7 @@ export default function Signup() {
                     value={confirm}
                     onChange={(e) => setConfirm(e.target.value)}
                     required
-                    className="w-full bg-black/20 border border-white/10 text-white placeholder-white/40 rounded-xl pl-10 pr-10 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500/50 transition-all"
+                    className="w-full bg-black/20 border border-white/10 text-white placeholder-white/40 rounded-xl pl-9 sm:pl-10 pr-9 sm:pr-10 py-[10px] sm:py-3 text-sm sm:text-base focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500/50 transition-all"
                   />
                   <button
                     type="button"
@@ -198,17 +198,17 @@ export default function Signup() {
             <button
               type="submit"
               disabled={loading}
-              className="w-full group relative overflow-hidden bg-linear-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white font-semibold py-3.5 rounded-xl shadow-lg shadow-blue-500/20 transition-all duration-300 transform hover:-translate-y-0.5 disabled:opacity-70 disabled:hover:translate-y-0 cursor-pointer mt-2"
+              className="w-full group relative overflow-hidden bg-linear-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white font-semibold py-2.5 sm:py-3.5 rounded-xl shadow-lg shadow-blue-500/20 transition-all duration-300 transform hover:-translate-y-0.5 disabled:opacity-70 disabled:hover:translate-y-0 cursor-pointer mt-1 sm:mt-2"
             >
-              <div className="flex items-center justify-center gap-2">
+              <div className="flex items-center justify-center gap-2 text-sm sm:text-base">
                 {loading ? (
-                  <Loader2 className="animate-spin" size={20} />
+                  <Loader2 className="animate-spin" size={18} />
                 ) : (
                   <>
                     Create Account
                     <ArrowRight
-                      size={18}
-                      className="group-hover:translate-x-1 transition-transform"
+                      size={16}
+                      className="group-hover:translate-x-1 transition-transform sm:w-[18px] sm:h-[18px]"
                     />
                   </>
                 )}
@@ -216,8 +216,8 @@ export default function Signup() {
             </button>
           </form>
 
-          <div className="mt-8 text-center">
-            <p className="text-white/60 text-sm">
+          <div className="mt-4 sm:mt-8 text-center">
+            <p className="text-white/60 text-xs sm:text-sm">
               Already have an account?{" "}
               <Link
                 href="/auth/login"
