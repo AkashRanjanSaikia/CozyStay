@@ -160,12 +160,12 @@ export default function Navbar() {
             </div>
 
             {/* Mobile User & Menu Button */}
-            <div className="flex items-center gap-1 md:hidden">
+            <div className="flex items-center  md:hidden">
               {user && <DropdownMenuDemo />}
               <button
                 ref={buttonRef}
                 onClick={() => setOpen(!open)}
-                className="p-2 rounded-full text-slate-700 hover:bg-slate-100 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500/50"
+                className="p-2 rounded-full text-slate-700 hover:bg-slate-100 transition-colors focus:outline-none "
                 aria-label="Toggle menu"
               >
                 {open ? <X size={24} /> : <Menu size={24} />}
