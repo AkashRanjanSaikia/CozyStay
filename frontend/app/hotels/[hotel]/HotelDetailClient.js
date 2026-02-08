@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useState, useContext } from "react";
 import { useParams, useRouter } from "next/navigation";
+import { revalidateHotels } from "../../actions";
 import { Calendar } from "@/components/ui/calendar";
 import Image from "next/image";
 import { UserContext } from "../../context/usercontext";
@@ -273,6 +274,7 @@ export default function HotelDetailClient({ initialHotelData }) {
       setReviewText("");
       setReviewRating(0);
       setReviewMessage("Review submitted successfully.");
+      await revalidateHotels(hotelData._id);
     } catch (err) {
       console.error("Review submit error:", err);
       setReviewMessage("Failed to submit review due to network error.");
