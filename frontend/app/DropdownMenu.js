@@ -31,7 +31,7 @@ export function DropdownMenuDemo() {
       <DropdownMenuTrigger asChild>
         <button className="flex items-center gap-2 p-1.5 rounded-full border border-transparent hover:bg-slate-100 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500/20">
           <div className="bg-slate-100 p-1 rounded-full text-slate-600">
-            <CircleUserRound className="w-5 h-5" />
+            <CircleUserRound className="w-6 h-6" />
           </div>
           {user?.name && (
             <span className="text-sm font-medium text-slate-700 pr-2 hidden sm:block">

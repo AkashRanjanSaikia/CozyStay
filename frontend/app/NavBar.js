@@ -57,17 +57,17 @@ export default function Navbar() {
             `}
           >
             {/* Logo */}
-            <Link href="/" className="flex items-center gap-3 group">
-              <div className="relative overflow-hidden rounded-full ring-2 ring-white/50 shadow-sm transition-transform group-hover:scale-105 duration-300">
+            <Link href="/" className=" flex items-center gap-1 sm:gap-3 group">
+              <div className="  relative overflow-hidden rounded-full ring-2 ring-white/50 shadow-sm transition-transform group-hover:scale-105 duration-300">
                 <Image
                   src="/logo2.png"
                   alt="CozyStay"
                   width={40}
                   height={40}
-                  className="h-10 w-10 object-cover"
+                  className="h-8 w-8 sm:h-10 sm:w-10 object-cover "
                 />
               </div>
-              <span className="font-bold text-xl tracking-tight text-slate-900 group-hover:text-blue-600 transition-colors duration-300">
+              <span className="font-bold text-lg sm:text-xl  tracking-tight text-slate-900 group-hover:text-blue-600 transition-colors duration-300">
                 CozyStay
               </span>
             </Link>
@@ -136,14 +136,17 @@ export default function Navbar() {
               )}
             </div>
 
-            {/* Mobile Menu Button */}
-            <button
-              onClick={() => setOpen(!open)}
-              className="md:hidden p-2 rounded-full text-slate-700 hover:bg-slate-100 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500/50"
-              aria-label="Toggle menu"
-            >
-              {open ? <X size={24} /> : <Menu size={24} />}
-            </button>
+            {/* Mobile User & Menu Button */}
+            <div className="flex items-center gap-1 md:hidden">
+              {user && <DropdownMenuDemo />}
+              <button
+                onClick={() => setOpen(!open)}
+                className="p-2 rounded-full text-slate-700 hover:bg-slate-100 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500/50"
+                aria-label="Toggle menu"
+              >
+                {open ? <X size={24} /> : <Menu size={24} />}
+              </button>
+            </div>
           </motion.div>
         </div>
       </nav>
@@ -197,11 +200,7 @@ export default function Navbar() {
                       </Link>
                     )}
                   </>
-                ) : (
-                  <div className="flex justify-center pt-2">
-                    <DropdownMenuDemo />
-                  </div>
-                )}
+                ) : null}
               </div>
             </div>
           </motion.div>
