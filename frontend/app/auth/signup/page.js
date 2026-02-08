@@ -58,7 +58,7 @@ export default function Signup() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
-        className="w-full max-w-sm relative z-10 mt-10 sm:mt-18"
+        className="w-full max-w-sm relative z-10  sm:mt-18"
       >
         <div className="bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl p-4 sm:p-6 shadow-2xl text-white">
           <div className="flex flex-col items-center mb-4 sm:mb-6">
