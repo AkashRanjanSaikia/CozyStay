@@ -29,12 +29,15 @@ export function DropdownMenuDemo() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <button className="flex items-center gap-2 p-1.5 rounded-full border border-transparent hover:bg-slate-100 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500/20">
-          <div className="bg-slate-100 p-1 rounded-full text-slate-600">
-            <CircleUserRound className="w-6 h-6" />
+        <button 
+          className="group flex items-center gap-2 p-1 rounded-full border border-transparent hover:bg-accent hover:border-border transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+          aria-label={user?.name ? `User menu for ${user.name}` : "User menu"}
+        >
+          <div className="bg-secondary p-2 rounded-full text-muted-foreground group-hover:text-primary group-hover:bg-background group-hover:scale-105 transition-all duration-300 shadow-sm ring-1 ring-transparent group-hover:ring-border">
+            <CircleUserRound className="w-6 h-6" strokeWidth={1.75} />
           </div>
           {user?.name && (
-            <span className="text-sm font-medium text-slate-700 pr-2 hidden sm:block">
+            <span className="text-sm font-medium text-muted-foreground group-hover:text-foreground pr-3 hidden sm:block transition-colors duration-300">
               {user.name.split(" ")[0]}
             </span>
           )}
