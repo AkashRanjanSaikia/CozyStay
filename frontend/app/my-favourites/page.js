@@ -64,7 +64,7 @@ function Favourites() {
           No Favourites Yet
         </h1>
         <p className="text-gray-600 mb-8 max-w-md">
-          You haven't added any favorite hotels yet. Browse our collection to find your perfect stay and save it here for later.
+          You haven&apos;t added any favorite hotels yet. Browse our collection to find your perfect stay and save it here for later.
         </p>
         <Button asChild size="lg">
           <Link href="/hotels">Browse Hotels</Link>

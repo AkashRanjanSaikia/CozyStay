@@ -149,7 +149,7 @@ export default function AddHotelForm() {
         
         await revalidateHotels();
         setSuccessMsg("Hotel added successfully.");
-        router.push("/my-hotels");
+        router.push("/manager/dashboard");
       }
     } catch (err) {
       setError(err.message || "Something went wrong");
