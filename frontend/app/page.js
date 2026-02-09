@@ -45,7 +45,7 @@ export default function Home() {
       <div className="bg-landing" aria-hidden="true" />
 
       {/* Gradient overlay for contrast */}
-      <div className="fixed inset-0 bg-linear-to-b from-black/70 via-black/50 to-black/70  " />
+      {/* <div className="fixed inset-0 bg-linear-to-b from-black/70 via-black/50 to-black/70  " /> */}
       
       {/* Content */}
       <div className="relative z-20 flex flex-col items-center justify-center text-center text-white px-4 sm:px-6 lg:px-8 py-14 sm:py-16 lg:py-20 mt-8 sm:mt-10">

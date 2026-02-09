@@ -7,7 +7,7 @@ async function getListings() {
       {
         next: {
           tags: ["hotels"],
-          revalidate: 3600, 
+          revalidate: 21600, 
         }, 
       },
     );
